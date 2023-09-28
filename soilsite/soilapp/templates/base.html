@@ -12,6 +12,11 @@
         <h1>Your Website</h1>
         <nav>
             <ul>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
                 <li><a href="/">Home</a></li>
                 <li><a href="/about/">About</a></li>
                 <!-- Add more navigation links as needed -->
