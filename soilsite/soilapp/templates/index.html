@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}User Dashboard{% endblock %}
+
+{% block content %}
+  <h2>User Dashboard</h2>
+  
+  <!-- Display User Information -->
+  <div class="user-info">
+    <p>Welcome, {{ user.username }}!</p>
+    <!--p>Email: {{ user.email }}</p-->
+    <!--p>Role: {{ user.user_role }}</p-->
+  </div>
+  
+  <!-- Submitted Soil Data -->
+  <h3>Your Submitted Soil Data</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Soil Type</th>
+        <th>pH Level</th>
+        <th>Nutrient Content</th>
+        <th>Timestamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in soil_data %}
+        <tr>
+          <td>{{ data.soil_type }}</td>
+          <td>{{ data.ph_level }}</td>
+          <td>{{ data.nutrient_content }}</td>
+          <td>{{ data.timestamp }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="4">No soil data submitted yet.</td>
+        </tr>
+      {% endfor %}
+      {% for data in context %}
+        <tr>
+          <td>{{ data.profiles }}</td>
+          <td>{{ data.soils }}</td>
+       {% endfor %}
+    </tbody>
+  </table>
+  
+  <!-- Health Assessments -->
+  <h3>Soil Health Assessments</h3>
+  <!--p>Your soil health rating: {{ soil_health_rating }}</p-->
+  
+  <!-- Add additional content or sections as needed -->
+</div>
+{% endblock %}
+
