@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import SoilData
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=254, required=True, help_text='Required. Inform a valid email address.')
@@ -15,3 +16,8 @@ class SignUpForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+class SoilDataForm(forms.ModelForm):
+    class Meta:
+        model = SoilData
+        fields = ('soil_type', 'ph_level', 'nutrient_content', 'timestamp')

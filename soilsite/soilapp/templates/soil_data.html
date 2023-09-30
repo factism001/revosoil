@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Soil Data Entry{% endblock %}
+
+{% block content %}
+    <h1>Soil Data Entry</h1>
+    
+    <form method="post">
+        {{ form.hidden_tag() }}
+        
+        <div>
+            {{ form.soil_type.label }}
+            {{ form.soil_type(class="form-control") }}
+        </div>
+        
+        <div>
+            {{ form.ph_level.label }}
+            {{ form.ph_level(class="form-control") }}
+        </div>
+        
+        <div>
+            {{ form.nutrient_content.label }}
+            {{ form.nutrient_content(class="form-control") }}
+        </div>
+        
+        <div>
+            {{ form.timestamp.label }}
+            {{ form.timestamp(class="form-control") }}
+        </div>
+        
+        <div>
+            <input type="submit" value="Submit" class="btn btn-primary">
+        </div>
+    </form>
+    
+    <!-- Display validation errors if any -->
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <h4>Form Validation Error(s):</h4>
+            <ul>
+                {% for field, errors in form.errors.items() %}
+                    {% for error in errors %}
+                        <li>{{ field }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}
+
