@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
-from .models import SoilData, Profile
-from .forms import SignUpForm, SoilDataForm
+from .models import SoilData #Profile
+from .forms import SignUpForm, SoilDataForm #SoilPropertiesForm
 from django.contrib.auth import authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
+#import google.generativeai as palm
+
 
 # Create your views here.
 
@@ -79,3 +81,32 @@ def user_dashboard(request):
     soil_data = SoilData.objects.filter(user=request.user)
     # Implement logic to calculate health assessments if needed
     return render(request, 'dashboard.html', {'soil_data': soil_data})
+
+
+'''
+@login required
+def soil_properties_analysis(request):
+    if request.method == 'POST':
+        form = SoilPropertiesForm(request.POST)
+        if form.is_valid():
+            # Construct the prompt using user input
+            prompt = f"Analyze the soil with the following properties: Particle Size: {form.cleaned_data['particle_size']}, Soil pH: {form.cleaned_data['soil_ph']}, CEC: {form.cleaned_data['cec']}, Calcium: {form.cleaned_data['calcium']}, Magnesium: {form.cleaned_data['magnesium']}"
+
+            # Use the text completion model to generate a response
+            completion = palm.generate_text(
+                model=model,
+                prompt=prompt,
+                temperature=0.7,  # Adjust temperature as needed
+                max_output_tokens=800,  # Adjust max length as needed
+            )
+
+            # Get the generated response from the completion
+            generated_response = completion.result
+
+            return render(request, 'analysis_result.html', {'generated_response': generated_response})
+
+    else:
+        form = SoilPropertiesForm()
+
+    return render(request, 'input_form.html', {'form': form})
+'''

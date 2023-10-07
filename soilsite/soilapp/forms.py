@@ -20,4 +20,4 @@ class SignUpForm(UserCreationForm):
 class SoilDataForm(forms.ModelForm):
     class Meta:
         model = SoilData
-        fields = ('soil_type', 'ph_level', 'nutrient_content', 'timestamp')
+        fields = ('soil_type', 'ph_level', 'nutrient_content')
