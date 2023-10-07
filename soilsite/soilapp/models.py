@@ -36,10 +36,8 @@ class SoilData(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
 
-"""
 class Profile(models.Model):
-    #user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=20)
     address = models.TextField()
     other_fields = models.TextField()
-"""

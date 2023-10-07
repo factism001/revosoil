@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
-from .models import SoilData #Profile
-from .forms import SignUpForm, SoilDataForm #SoilPropertiesForm
+from .models import SoilData, Profile
+from .forms import SignUpForm, SoilDataForm, SoilPropertiesForm
 from django.contrib.auth import authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
-#import google.generativeai as palm
+import google.generativeai as palm
 
 
 # Create your views here.
@@ -83,14 +83,16 @@ def user_dashboard(request):
     return render(request, 'dashboard.html', {'soil_data': soil_data})
 
 
-'''
-@login required
+@login_required
 def soil_properties_analysis(request):
     if request.method == 'POST':
+        palm.configure(api_key='AIzaSyA2fSdNXmrkVRtxVECo-PjdtGAyntUMpW8')
+        models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
+        model = models[0].name
         form = SoilPropertiesForm(request.POST)
         if form.is_valid():
             # Construct the prompt using user input
-            prompt = f"Analyze the soil with the following properties: Particle Size: {form.cleaned_data['particle_size']}, Soil pH: {form.cleaned_data['soil_ph']}, CEC: {form.cleaned_data['cec']}, Calcium: {form.cleaned_data['calcium']}, Magnesium: {form.cleaned_data['magnesium']}"
+            prompt = f"Analyze the soil with the following properties: Particle Size: {form.cleaned_data['particle_size']}, Soil pH: {form.cleaned_data['soil_ph']}, CEC: {form.cleaned_data['cec']}, Calcium: {form.cleaned_data['calcium']}, Magnesium: {form.cleaned_data['magnesium']} and then give a recommendation"
 
             # Use the text completion model to generate a response
             completion = palm.generate_text(
@@ -108,5 +110,4 @@ def soil_properties_analysis(request):
     else:
         form = SoilPropertiesForm()
 
-    return render(request, 'input_form.html', {'form': form})
-'''
+    return render(request, 'soil_properties_input_form.html', {'form': form})
