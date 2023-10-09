@@ -30,3 +30,7 @@ class SoilPropertiesForm(forms.Form):
     calcium = forms.CharField(label='Calcium', required=True)
     magnesium = forms.CharField(label='Magnesium', required=True)
 
+
+class ChatForm(forms.Form):
+    prompt = forms.CharField(label='Enter a prompt', max_length=255)
+

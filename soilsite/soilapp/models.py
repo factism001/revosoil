@@ -41,3 +41,16 @@ class Profile(models.Model):
     phone_number = models.CharField(max_length=20)
     address = models.TextField()
     other_fields = models.TextField()
+
+
+class ChatMessage(models.Model):
+    user_input = models.TextField()
+    model_response = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"User: {self.user_input[:50]} | Model: {self.model_response[:50]}"
+
+    class Meta:
+        ordering = ['timestamp']
+

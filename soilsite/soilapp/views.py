@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import SoilData, Profile
-from .forms import SignUpForm, SoilDataForm, SoilPropertiesForm
+from .models import SoilData, Profile, ChatMessage
+from .forms import SignUpForm, SoilDataForm, SoilPropertiesForm, ChatForm
 from django.contrib.auth import authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -111,3 +111,32 @@ def soil_properties_analysis(request):
         form = SoilPropertiesForm()
 
     return render(request, 'soil_properties_input_form.html', {'form': form})
+
+
+@login_required
+def chat_view(request):
+    if request.method == 'POST':
+        palm.configure(api_key='AIzaSyA2fSdNXmrkVRtx    VECo-PjdtGAyntUMpW8')
+        form = ChatForm(request.POST)
+        if form.is_valid():
+            prompt = form.cleaned_data['prompt']
+            if prompt == 'quit':
+                return redirect('chat_view')  # Redirect to chat view when 'quit' is entered
+
+            # Use your chat model here to generate a response
+            response = palm.chat(
+                context="Be a professional soil scientist with vast and accurate knowledge in soil science, agronomy, and general agriculture.",
+                examples=[],
+                messages=prompt
+            )
+
+            # Save the user's input and the model's response to your database
+            ChatMessage.objects.create(user_input=prompt, model_response=response.last)
+    else:
+        form = ChatForm()
+
+    # Fetch all chat messages from your database
+    chat_messages = ChatMessage.objects.all()
+
+    return render(request, 'chat_page.html', {'form': form, 'chat_messages': chat_messages})
+
