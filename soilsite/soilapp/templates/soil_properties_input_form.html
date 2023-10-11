@@ -4,12 +4,37 @@
     <title>Soil Properties Input Form</title>
 </head>
 <body>
-    <h1>Soil Properties Input Form</h1>
+    <h2>Soil Properties Input Form</h2>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Analyze Soil Properties">
+        {{ formset.management_form }}
+        {% for form in formset %}
+            <div class="form-row">
+                {{ form.id }}
+                {{ form.name.label_tag }} {{ form.name }}
+                {{ form.value.label_tag }} {{ form.value }}
+            </div>
+        {% endfor %}
+
+        <button type="button" id="add-property">Add Property</button>
+        <br>
+
+        <input type="submit" value="Analyze">
     </form>
+
+    <script>
+        const addButton = document.getElementById('add-property');
+        addButton.addEventListener('click', () => {
+            const formCount = parseInt('{{ formset.total_form_count }}');
+            const newForm = '{{ formset.empty_form|escapejs }}';
+            const formContainer = document.querySelector('[name="soil_properties-TOTAL_FORMS"]');
+            const formCountInput = document.querySelector('[name="soil_properties-INITIAL_FORMS"]');
+            const newFormCount = formCount + 1;
+            formContainer.value = newFormCount;
+            formCountInput.value = formCount;
+            addButton.insertAdjacentHTML('beforebegin', newForm.replace(/__prefix__/g, formCount));
+        });
+    </script>
 </body>
 </html>
 
