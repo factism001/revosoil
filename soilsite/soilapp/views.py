@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Profile, ChatMessage, SoilProperty
-from .forms import SignUpForm, SoilPropertiesForm, ChatForm, SoilPropertiesFormSet
+from .models import Profile, ChatMessage, SoilData  
+from .forms import SignUpForm, SoilPropertiesForm, ChatForm
 from django.contrib.auth import authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -83,7 +83,7 @@ def user_dashboard(request):
     return render(request, 'dashboard.html', {'soil_data': soil_data})
 
 
-'''
+
 @login_required
 def soil_properties_analysis(request):
     if request.method == 'POST':
@@ -112,49 +112,7 @@ def soil_properties_analysis(request):
         form = SoilPropertiesForm()
 
     return render(request, 'soil_properties_input_form.html', {'form': form})
-'''
 
-
-
-@login_required
-def soil_properties_analysis(request):
-    palm.configure(api_key='AIzaSyA2fSdNXmrkVRtxVECo-PjdtGAyntUMpW8')
-    models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
-    model = models[0].name
-
-    if request.method == 'POST':
-        formset = SoilPropertiesFormSet(request.POST, prefix='soil_properties')
-        if formset.is_valid():
-            properties = [
-                (form.cleaned_data['name'], form.cleaned_data['value']) for form in formset
-            ]
-
-            # Construct the prompt using user input
-            prompt = prompt = "Analyze the soil with the following properties:"
-            for name, value in properties:
-            prompt += f" {name}: {value},"
-
-            prompt = prompt.rstrip(',')  # Remove the trailing commaand then give a recommendation"
-
-            prompt += " and then give a recommendation"
-
-            # Use the text completion model to generate a response
-            completion = palm.generate_text(
-                model=model,
-                prompt=prompt,
-                temperature=0.7,  # Adjust temperature as needed
-                max_output_tokens=800,  # Adjust max length as needed
-            )
-
-            # Get the generated response from the completion
-            generated_response = completion.result
-
-            return render(request, 'analysis_result.html', {'generated_response': generated_response, 'formset': formset})
-
-    else:
-        formset = SoilPropertiesFormSet(prefix='soil_properties')
-
-    return render(request, 'soil_properties_input_form.html', {'formset': formset})
 
 
 

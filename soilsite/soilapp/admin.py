@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import SoilProperty, Profile
+from .models import Profile, SoilData
 
 # Register your models here.
 
-admin.site.register(SoilProperty)
+admin.site.register(SoilData)
 admin.site.register(Profile)
