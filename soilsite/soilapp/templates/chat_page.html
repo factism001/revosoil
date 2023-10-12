@@ -1,28 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Chat Page</title>
-</head>
-<body>
-    <h1>Chat Page</h1>
+{% extends "base.html" %}
 
-    <hr>
+{% block title %}Chat Page{% endblock %}
 
-    <div>
-        {% for message in chat_messages %}
-            <div>
-                <p><strong>User:</strong> {{ message.user_input }}</p>
-                <p><strong>Model:</strong> {{ message.model_response }}</p>
-            </div>
-            <hr>
-        {% endfor %}
+{% block content %}
+    <div class="container mt-5">
+        <h1>Chat Page</h1>
+        <hr>
+
+        <div>
+            {% for message in chat_messages %}
+                <div>
+                    <p><strong>User:</strong> {{ message.user_input }}</p>
+                    <p><strong>Model:</strong> {{ message.model_response }}</p>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
     </div>
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Send">
-    </form>
-</body>
-</html>
+{% endblock %}
 
