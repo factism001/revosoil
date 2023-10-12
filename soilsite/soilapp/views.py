@@ -80,7 +80,7 @@ def soil_data(request):
 def user_dashboard(request):
     soil_data = SoilData.objects.filter(user=request.user)
     # Implement logic to calculate health assessments if needed
-    return render(request, 'dashboard.html', {'soil_data': soil_data})
+    return render(request, 'user_dashboard.html', {'soil_data': soil_data})
 
 
 
