@@ -1,27 +1,38 @@
 {% extends "base.html" %}
 
-{% block title %}Chat Page{% endblock %}
-
 {% block content %}
     <div class="container mt-5">
         <h1>Chat Page</h1>
         <hr>
-
-        <div>
+        <ul class="list-group chat-container">
             {% for message in chat_messages %}
-                <div>
-                    <p><strong>User:</strong> {{ message.user_input }}</p>
-                    <p><strong>Model:</strong> {{ message.model_response }}</p>
-                </div>
-                <hr>
+                <li class="list-group-item message-container my-2 p-2">
+                    <div class="user-message bg-primary text-white p-2">
+                        <p><strong>User:</strong> {{ message.user_input }}</p>
+                    </div>
+                    <div class="model-message bg-light p-2">
+                        <p><strong>Model:</strong> {{ message.model_response }}</p>
+                    </div>
+                </li>
             {% endfor %}
-        </div>
-
+        </ul>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            <div class="input-group mb-3" id="user_prompt">
+                {{ form.prompt.label_tag }}
+                {{ form.prompt }}
+            </div>
             <button type="submit" class="btn btn-primary">Send</button>
         </form>
     </div>
+    <script>
+        // Scroll to the input field with id "user_prompt"
+        window.onload = function() {
+            const inputField = document.getElementById('user_prompt');
+            if (inputField) {
+                inputField.scrollIntoView({ behavior: 'smooth' });
+            }
+        };
+    </script>
 {% endblock %}
 

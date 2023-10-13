@@ -1,15 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Soil Properties Input Form</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Soil Properties Input Form{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
     <h1>Soil Properties Input Form</h1>
-    <form method="post">
+    <form method="post" class="mt-3">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Analyze Soil Properties">
+        <div class="mb-3 row">
+            <label for="{{ form.particle_size.id_for_label }}" class="col-sm-2 col-form-label">{{ form.particle_size.label }}</label>
+            <div class="col-sm-10">
+                {{ form.particle_size }}
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="{{ form.soil_ph.id_for_label }}" class="col-sm-2 col-form-label">{{ form.soil_ph.label }}</label>
+            <div class="col-sm-10">
+                {{ form.soil_ph }}
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="{{ form.cec.id_for_label }}" class="col-sm-2 col-form-label">{{ form.cec.label }}</label>
+            <div class="col-sm-10">
+                {{ form.cec }}
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="{{ form.calcium.id_for_label }}" class="col-sm-2 col-form-label">{{ form.calcium.label }}</label>
+            <div class="col-sm-10">
+                {{ form.calcium }}
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="{{ form.magnesium.id_for_label }}" class="col-sm-2 col-form-label">{{ form.magnesium.label }}</label>
+            <div class="col-sm-10">
+                {{ form.magnesium }}
+            </div>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Analyze Soil Properties</button>
+        </div>
     </form>
-</body>
-</html>
+</div>
+{% endblock %}
 
