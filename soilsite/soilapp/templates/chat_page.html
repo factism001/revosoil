@@ -8,10 +8,10 @@
             {% for message in chat_messages %}
                 <li class="list-group-item message-container my-2 p-2">
                     <div class="user-message bg-primary text-white p-2">
-                        <p><strong>User:</strong> {{ message.user_input }}</p>
+                        <p><strong>{{ message.user }}:</strong> {{ message.user_input }}</p>
                     </div>
                     <div class="model-message bg-light p-2">
-                        <p><strong>Model:</strong> {{ message.model_response }}</p>
+                        <p><strong>Revosoil:</strong> {{ message.model_response }}</p>
                     </div>
                 </li>
             {% endfor %}
@@ -26,13 +26,13 @@
         </form>
     </div>
     <script>
-        // Scroll to the input field with id "user_prompt"
-        window.onload = function() {
+        // Scroll to the input field with id "user_prompt" after the page has loaded
+        window.addEventListener('load', function() {
             const inputField = document.getElementById('user_prompt');
             if (inputField) {
                 inputField.scrollIntoView({ behavior: 'smooth' });
             }
-        };
+        });
     </script>
 {% endblock %}
 

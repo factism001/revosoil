@@ -135,8 +135,11 @@ def chat_view(request):
                 messages=prompt
             )
 
+            # Get the username of the current user
+            user = request.user
+
             # Save the user's input and the model's response to your database
-            ChatMessage.objects.create(user_input=prompt, model_response=response.last)
+            ChatMessage.objects.create(user=user, user_input=prompt, model_response=response.last)
     else:
         form = ChatForm()
 
