@@ -1,49 +1,37 @@
 {% extends "base.html" %}
 
-{% block title %}User Dashboard{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
-  <h2 class="mt-4">User Dashboard</h2>
-  
-  <!-- Display User Information -->
-  <div class="user-info mt-4">
-    <p>Welcome, {{ user.username }}!</p>
-    <p>Email: {{ user.email }}</p>
-  </div>
-  
-  <!-- Submitted Soil Data -->
-  <h3 class="mt-4">Your Submitted Soil Data</h3>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Soil Type</th>
-        <th>pH Level</th>
-        <th>Nutrient Content</th>
-        <th>Timestamp</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for data in soil_data %}
-        <tr>
-          <td>{{ data.soil_type }}</td>
-          <td>{{ data.ph_level }}</td>
-          <td>{{ data.nutrient_content }}</td>
-          <td>{{ data.timestamp }}</td>
-        </tr>
-      {% empty %}
-        <tr>
-          <td colspan="4">No soil data submitted yet.</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  
-  <!-- Health Assessments -->
-  <h3 class="mt-4">Soil Health Assessments</h3>
-  </div>
-{% else %}
-  <p>You must be logged in to view this page.</p>
-{% endif %}
+    <header class="bg-primary text-white text-center py-5">
+        <h1>Welcome to Revosoil</h1>
+        <p class="lead">Your Soil Analysis and Agriculture Companion</p>
+        <a href="{% url 'soil_properties_analysis' %}" class="btn btn-lg btn-success mt-3">Analyze Soil</a>
+    </header>
+
+    <section class="container mt-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>About Us</h2>
+                <p>Revosoil is your one-stop solution for soil analysis and agriculture recommendations. Whether you are a farmer or a gardening enthusiast, we're here to assist you in understanding your soil better.</p>
+            </div>
+            <div class="col-lg-6">
+                <h2>Chat with the Soil Doctor</h2>
+                <p>Our virtual assistant is ready to answer your questions on soil science, farming, and agriculture. Get expert advice and recommendations right from the comfort of your home.</p>
+                <a href="{% url 'chat_view' %}" class="btn btn-primary mt-3">Chat Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center">Soil Analysis Results</h2>
+            <p class="text-center">Instantly interpret your soil analysis results and receive customized recommendations.</p>
+            <div class="text-center">
+                <a href="{% url 'soil_properties_analysis' %}" class="btn btn-lg btn-success">Get Started</a>
+            </div>
+        </div>
+    </section>
+</div>
 {% endblock %}
 

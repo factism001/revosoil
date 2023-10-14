@@ -3,18 +3,17 @@
 {% block title %}User Dashboard{% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
-  <h2 class="mt-4">User Dashboard</h2>
+  <h2>User Dashboard</h2>
   
   <!-- Display User Information -->
-  <div class="user-info mt-4">
+  <div class="user-info">
     <p>Welcome, {{ user.username }}!</p>
     <p>Email: {{ user.email }}</p>
   </div>
   
   <!-- Submitted Soil Data -->
-  <h3 class="mt-4">Your Submitted Soil Data</h3>
-  <table class="table table-striped">
+  <h3>Your Submitted Soil Data</h3>
+  <table class="table">
     <thead>
       <tr>
         <th>Soil Type</th>
@@ -40,10 +39,10 @@
   </table>
   
   <!-- Health Assessments -->
-  <h3 class="mt-4">Soil Health Assessments</h3>
-  </div>
-{% else %}
-  <p>You must be logged in to view this page.</p>
-{% endif %}
+  <h3>Soil Health Assessments</h3>
+  <p>Your soil health rating: {{ soil_health_rating }}</p>
+  
+  <!-- Add additional content or sections as needed -->
+</div>
 {% endblock %}
 

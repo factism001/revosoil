@@ -58,7 +58,7 @@ def logout_view(request):
     messages.info(request, "You have successfully logged out.")
     return redirect('index')
 
-@login_required
+@login_required(login_url='login')
 def soil_data(request):
     if request.method == 'POST':
         form = SoilDataForm(request.POST)
@@ -76,7 +76,7 @@ def soil_data(request):
         form = SoilDataForm()
     return render(request, 'soil_data.html', {'form': form})
 
-@login_required
+@login_required(login_url='login')
 def user_dashboard(request):
     soil_data = SoilData.objects.filter(user=request.user)
     # Implement logic to calculate health assessments if needed
@@ -84,7 +84,7 @@ def user_dashboard(request):
 
 
 
-@login_required
+@login_required(login_url='login')
 def soil_properties_analysis(request):
     if request.method == 'POST':
         palm.configure(api_key='AIzaSyA2fSdNXmrkVRtxVECo-PjdtGAyntUMpW8')
@@ -118,7 +118,7 @@ def soil_properties_analysis(request):
 
 
 
-@login_required
+@login_required(login_url='login')
 def chat_view(request):
     if request.method == 'POST':
         palm.configure(api_key='AIzaSyA2fSdNXmrkVRtx    VECo-PjdtGAyntUMpW8')
@@ -144,7 +144,7 @@ def chat_view(request):
         form = ChatForm()
 
     # Fetch all chat messages from your database
-    chat_messages = ChatMessage.objects.all()
+    chat_messages = ChatMessage.objects.filter(user=request.user)
 
     return render(request, 'chat_page.html', {'form': form, 'chat_messages': chat_messages})
 
