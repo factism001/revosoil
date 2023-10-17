@@ -93,7 +93,14 @@ def soil_properties_analysis(request):
         form = SoilPropertiesForm(request.POST)
         if form.is_valid():
             # Construct the prompt using user input
-            prompt = f"Analyze the soil with the following properties: Particle Size: {form.cleaned_data['particle_size']}, Soil pH: {form.cleaned_data['soil_ph']}, CEC: {form.cleaned_data['cec']}, Calcium: {form.cleaned_data['calcium']}, Magnesium: {form.cleaned_data['magnesium']} and then give a recommendation"
+            prompt = f"Please analyze the soil with the following properties:\n\n\
+- Particle Size: {form.cleaned_data['particle_size']}\n\
+- Soil pH: {form.cleaned_data['soil_ph']}\n\
+- CEC (Cation Exchange Capacity): {form.cleaned_data['cec']}\n\
+- Calcium content: {form.cleaned_data['calcium']}\n\
+- Magnesium content: {form.cleaned_data['magnesium']}\n\n\
+Based on these properties, analyze the soil quality, identify any potential issues, and provide detailed recommendations for improving the soil conditions. Consider factors like nutrient deficiencies, pH adjustments, and specific agronomic practices that can optimize soil health and crop yield. Your expertise is invaluable in helping our users make informed decisions for their farming and gardening endeavors."
+
 
             # Use the text completion model to generate a response
             completion = palm.generate_text(
