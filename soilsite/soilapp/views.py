@@ -95,11 +95,22 @@ def soil_properties_analysis(request):
         if form.is_valid():
             # Construct the prompt using user input
             prompt = f"Please analyze the soil with the following properties:\n\n\
-- Particle Size: {form.cleaned_data['particle_size']}\n\
-- Soil pH: {form.cleaned_data['soil_ph']}\n\
-- CEC (Cation Exchange Capacity): {form.cleaned_data['cec']}\n\
-- Calcium content: {form.cleaned_data['calcium']}\n\
-- Magnesium content: {form.cleaned_data['magnesium']}\n\n\
+- pH: {form.cleaned_data['pH']}\n\
+- % Organic Carbon: {form.cleaned_data['% Organic Carbon']}\n\
+- % Total Nitrogen: {form.cleaned_data['% Total Nitrogen']}\n\
+- Available Phosphorus (mg/kg): {form.cleaned_data['Available Phosphorus (mg/kg)']}\n\
+- Exch Acidity (/kg): {form.cleaned_data['Exch Acidity (/kg)']}\n\
+- Ca (cmol/kg): {form.cleaned_data['Ca (cmol/kg)']}\n\
+- Mg (cmol/kg): {form.cleaned_data['Mg (cmol/kg)']}\n\
+- K (cmol/kg): {form.cleaned_data['K (cmol/kg)']}\n\
+- Na (cmol/kg): {form.cleaned_data['Na (cmol/kg)']}\n\
+- Mn (cmol/kg): {form.cleaned_data['Mn (cmol/kg)']}\n\
+- Fe (mg/kg): {form.cleaned_data['Fe (mg/kg)']}\n\
+- Cu (mg/kg): {form.cleaned_data['Cu (mg/kg)']}\n\
+- Zn (mg/kg): {form.cleaned_data['Zn (mg/kg)']}\n\
+- % Sand: {form.cleaned_data['% Sand']}\n\
+- % Silt: {form.cleaned_data['% Silt']}\n\
+- % Clay: {form.cleaned_data['% Clay']}\n\n\
 Based on these properties, analyze the soil quality, identify any potential issues, and provide detailed recommendations for improving the soil conditions. Consider factors like nutrient deficiencies, pH adjustments, and specific agronomic practices that can optimize soil health and crop yield. Your expertise is invaluable in helping our users make informed decisions for their farming and gardening endeavors."
 
 
