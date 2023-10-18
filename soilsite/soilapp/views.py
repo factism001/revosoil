@@ -8,6 +8,7 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 import google.generativeai as palm
+import os
 
 
 # Create your views here.
@@ -87,7 +88,7 @@ def user_dashboard(request):
 @login_required(login_url='login')
 def soil_properties_analysis(request):
     if request.method == 'POST':
-        palm.configure(api_key='AIzaSyA2fSdNXmrkVRtxVECo-PjdtGAyntUMpW8')
+        palm.configure(api_key=os.environ['PALM_API_KEY'])
         models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
         model = models[0].name
         form = SoilPropertiesForm(request.POST)
@@ -128,7 +129,7 @@ Based on these properties, analyze the soil quality, identify any potential issu
 @login_required(login_url='login')
 def chat_view(request):
     if request.method == 'POST':
-        palm.configure(api_key='AIzaSyA2fSdNXmrkVRtx    VECo-PjdtGAyntUMpW8')
+        palm.configure(api_key=os.environ['PALM_API_KEY'])
         form = ChatForm(request.POST)
         if form.is_valid():
             prompt = form.cleaned_data['prompt']
