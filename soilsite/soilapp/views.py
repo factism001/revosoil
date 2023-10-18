@@ -95,22 +95,22 @@ def soil_properties_analysis(request):
         if form.is_valid():
             # Construct the prompt using user input
             prompt = f"Please analyze the soil with the following properties:\n\n\
-- pH: {form.cleaned_data['pH']}\n\
-- % Organic Carbon: {form.cleaned_data['% Organic Carbon']}\n\
-- % Total Nitrogen: {form.cleaned_data['% Total Nitrogen']}\n\
-- Available Phosphorus (mg/kg): {form.cleaned_data['Available Phosphorus (mg/kg)']}\n\
-- Exch Acidity (/kg): {form.cleaned_data['Exch Acidity (/kg)']}\n\
-- Ca (cmol/kg): {form.cleaned_data['Ca (cmol/kg)']}\n\
-- Mg (cmol/kg): {form.cleaned_data['Mg (cmol/kg)']}\n\
-- K (cmol/kg): {form.cleaned_data['K (cmol/kg)']}\n\
-- Na (cmol/kg): {form.cleaned_data['Na (cmol/kg)']}\n\
-- Mn (cmol/kg): {form.cleaned_data['Mn (cmol/kg)']}\n\
-- Fe (mg/kg): {form.cleaned_data['Fe (mg/kg)']}\n\
-- Cu (mg/kg): {form.cleaned_data['Cu (mg/kg)']}\n\
-- Zn (mg/kg): {form.cleaned_data['Zn (mg/kg)']}\n\
-- % Sand: {form.cleaned_data['% Sand']}\n\
-- % Silt: {form.cleaned_data['% Silt']}\n\
-- % Clay: {form.cleaned_data['% Clay']}\n\n\
+- pH: {form.cleaned_data['ph']}\n\
+- % Organic Carbon: {form.cleaned_data['organic_carbon']}\n\
+- % Total Nitrogen: {form.cleaned_data['total_nitrogen']}\n\
+- Available Phosphorus (mg/kg): {form.cleaned_data['available_phosphorus_(mg/kg)']}\n\
+- Exch Acidity (/kg): {form.cleaned_data['exch_acidity_(/kg)']}\n\
+- Ca (cmol/kg): {form.cleaned_data['ca_(cmol/kg)']}\n\
+- Mg (cmol/kg): {form.cleaned_data['mg_(cmol/kg)']}\n\
+- K (cmol/kg): {form.cleaned_data['k_(cmol/kg)']}\n\
+- Na (cmol/kg): {form.cleaned_data['na_(cmol/kg)']}\n\
+- Mn (cmol/kg): {form.cleaned_data['mn_(cmol/kg)']}\n\
+- Fe (mg/kg): {form.cleaned_data['fe_(mg/kg)']}\n\
+- Cu (mg/kg): {form.cleaned_data['cu_(mg/kg)']}\n\
+- Zn (mg/kg): {form.cleaned_data['zn_(mg/kg)']}\n\
+- % Sand: {form.cleaned_data['sand']}\n\
+- % Silt: {form.cleaned_data['silt']}\n\
+- % Clay: {form.cleaned_data['clay']}\n\n\
 Based on these properties, analyze the soil quality, identify any potential issues, and provide detailed recommendations for improving the soil conditions. Consider factors like nutrient deficiencies, pH adjustments, and specific agronomic practices that can optimize soil health and crop yield. Your expertise is invaluable in helping our users make informed decisions for their farming and gardening endeavors."
 
 

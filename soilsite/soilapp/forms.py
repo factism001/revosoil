@@ -26,22 +26,22 @@ class SoilDataForm(forms.ModelForm):
 
 
 class SoilPropertiesForm(forms.Form):
-    pH = forms.CharField(label='pH', required=True)
-    % Organic Carbon = forms.CharField(label='% Organic Carbon', required=True)
-    %Total Nitrogen = forms.CharField(label='%Total Nitrogen', required=True)
-    Available Phosphorus (mg/kg) = forms.CharField(label='Available Phosphorus (mg/kg)', required=True)
-    Exch Acidity (/kg) = forms.CharField(label='Exch Acidity (/kg)', required=True)
-    Ca (cmol/kg) = forms.CharField(label='Ca (cmol/kg)', required=True)
-    Mg (cmol/kg) = forms.CharField(label='Mg (cmol/kg)', required=True)
-    K (cmol/kg) = forms.CharField(label='K (cmol/kg)', required=True)
-    Na(cmol/kg) = forms.CharField(label='Na(cmol/kg)', required=True)
-    Mn (mg/kg) = forms.CharField(label='Mn (mg/kg)', required=True)
-    Fe (mg/kg) = forms.CharField(label='Fe (mg/kg)', required=True)
-    Cu(mg/kg) = forms.CharField(label='Cu(mg/kg)', required=True)
-    Zn(mg/kg) = forms.CharField(label='Zn(mg/kg)', required=True)
-    % Sand = forms.CharField(label='% Sand', required=True)
-    % Silt = forms.CharField(label='% Silt', required=True)
-    % Clay = forms.CharField(label='% Clay', required=True)
+    ph = forms.CharField(label='pH', required=False)
+    organic_carbon = forms.CharField(label='% Organic Carbon', required=False)
+    total_nitrogen = forms.CharField(label='%Total Nitrogen', required=False)
+    available_phosphorus_(mg/kg) = forms.CharField(label='Available Phosphorus (mg/kg)', required=False)
+    exch_acidity_(/kg) = forms.CharField(label='Exch Acidity (/kg)', required=False)
+    ca_(cmol/kg) = forms.CharField(label='Ca (cmol/kg)', required=False)
+    mg_(cmol/kg) = forms.CharField(label='Mg (cmol/kg)', required=F)
+    k_(cmol/kg) = forms.CharField(label='K (cmol/kg)', required=False)
+    na_(cmol/kg) = forms.CharField(label='Na(cmol/kg)', required=False)
+    mn_(mg/kg) = forms.CharField(label='Mn (mg/kg)', required=False)
+    fe_(mg/kg) = forms.CharField(label='Fe (mg/kg)', required=False)
+    cu_(mg/kg) = forms.CharField(label='Cu(mg/kg)', required=False)
+    zn_(mg/kg) = forms.CharField(label='Zn (mg/kg)', required=False)
+    sand = forms.CharField(label='% Sand', required=False)
+    silt = forms.CharField(label='% Silt', required=False)
+    clay = forms.CharField(label='% Clay', required=False)
 
 
 

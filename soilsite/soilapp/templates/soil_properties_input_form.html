@@ -8,37 +8,103 @@
     <form method="post" class="mt-3">
         {% csrf_token %}
         <div class="mb-3 row">
-            <label for="{{ form.particle_size.id_for_label }}" class="col-sm-2 col-form-label">{{ form.particle_size.label }}</label>
+            <label for="{{ form.ph.id_for_label }}" class="col-sm-2 col-form-label">{{ form.ph.label }}</label>
             <div class="col-sm-10">
-                {{ form.particle_size }}
+                {{ form.ph }}
             </div>
         </div>
         <div class="mb-3 row">
-            <label for="{{ form.soil_ph.id_for_label }}" class="col-sm-2 col-form-label">{{ form.soil_ph.label }}</label>
+            <label for="{{ form.organic_carbon.id_for_label }}" class="col-sm-2 col-form-label">{{ form.organic_carbon.label }}</label>
             <div class="col-sm-10">
-                {{ form.soil_ph }}
+                {{ form.organic_carbon }}
             </div>
         </div>
         <div class="mb-3 row">
-            <label for="{{ form.cec.id_for_label }}" class="col-sm-2 col-form-label">{{ form.cec.label }}</label>
+            <label for="{{ form.total_nitrogen.id_for_label }}" class="col-sm-2 col-form-label">{{ form.total_nitrogen.label }}</label>
             <div class="col-sm-10">
-                {{ form.cec }}
+                {{ form.total_nitrogen }}
             </div>
         </div>
         <div class="mb-3 row">
-            <label for="{{ form.calcium.id_for_label }}" class="col-sm-2 col-form-label">{{ form.calcium.label }}</label>
+            <label for="{{ form.available_phosphorus_(mg/kg).id_for_label }}" class="col-sm-2 col-form-label">{{ form.available_phosphorus_(mg/kg).label }}</label>
             <div class="col-sm-10">
-                {{ form.calcium }}
+                {{ form.available_phosphorus_(mg/kg) }}
             </div>
         </div>
         <div class="mb-3 row">
-            <label for="{{ form.magnesium.id_for_label }}" class="col-sm-2 col-form-label">{{ form.magnesium.label }}</label>
+            <label for="{{ form.exch_acidity_(/kg).id_for_label }}" class="col-sm-2 col-form-label">{{ form.exch_acidity_(/kg).label }}</label>
             <div class="col-sm-10">
-                {{ form.magnesium }}
+                {{ form.exch_acidity_(/kg) }}
             </div>
         </div>
+	<div class="mb-3 row">
+	    <label for="{{ form.ca_(cmol/kg).id_for_label }}" class="col-sm-2 col-form-label">{{ form.ca_(cmol/kg).label }}</label>
+	    <div class="col-sm-10">
+	        {{ form.ca_(cmol/kg) }}
+	    </div>
+	</div>
+	<div class="mb-3 row">
+	    <label for="{{ form.mg_(cmol/kg).id_for_label }}" class="col-sm-2 col-form-label">{{ form.mg_(cmol/kg).label }}</label>
+	    <div class="col-sm-10">
+	        {{ form.mg_(cmol/kg) }}
+	    </div>
+	</div>
+	<div class="mb-3 row">
+	    <label for="{{ form.k_(cmol/kg).id_for_label }}" class="col-sm-2 col-form-label">{{ form.k_(cmol/kg).label }}</label>
+	    <div class="col-sm-10">
+	        {{ form.k_(cmol/kg) }}
+	    </div>
+	</div>
+	<div class="mb-3 row">
+	    <label for="{{ form.na_(cmol/kg).id_for_label }}" class="col-sm-2 col-form-label">{{ form.na_(cmol/kg).label }}</label>
+	    <div class="col-sm-10">
+	        {{ form.na_(cmol/kg) }}
+	    </div>
+	</div>
+	<div class="mb-3 row">
+	    <label for="{{ form.mn_(mg/kg).id_for_label }}" class="col-sm-2 col-form-label">{{ form.mn_(mg/kg).label }}</label>
+	    <div class="col-sm-10">
+	        {{ form.mn_(mg/kg) }}
+	    </div>
+	</div>
+	<div class="mb-3 row">
+	    <label for="{{ form.fe_(mg/kg).id_for_label }}" class="col-sm-2 col-form-label">{{ form.fe_(mg/kg).label }}</label>
+	    <div class="col-sm-10">
+	        {{ form.fe_(mg/kg) }}
+	    </div>
+	</div>
+	<div class="mb-3 row">
+	    <label for="{{ form.cu_(mg/kg).id_for_label }}" class="col-sm-2 col-form-label">{{ form.cu_(mg/kg).label }}</label>
+	    <div class="col-sm-10">
+	        {{ form.cu_(mg/kg) }}
+	    </div>
+	</div>
+	<div class="mb-3 row">
+	    <label for="{{ form.zn_(mg/kg).id_for_label }}" class="col-sm-2 col-form-label">{{ form.zn_(mg/kg).label }}</label>
+	    <div class="col-sm-10">
+	        {{ form.zn_(mg/kg) }}
+	    </div>
+	</div>
+	<div class="mb-3 row">
+	    <label for="{{ form.sand.id_for_label }}" class="col-sm-2 col-form-label">{{ form.sand.label }}</label>
+	    <div class="col-sm-10">
+	        {{ form.sand }}
+	    </div>
+	</div>
+	<div class="mb-3 row">
+	    <label for="{{ form.silt.id_for_label }}" class="col-sm-2 col-form-label">{{ form.silt.label }}</label>
+	    <div class="col-sm-10">
+	        {{ form.silt }}
+	    </div>
+	</div>
+	<div class="mb-3 row">
+	    <label for="{{ form.clay.id_for_label }}" class="col-sm-2 col-form-label">{{ form.clay.label }}</label>
+	    <div class="col-sm-10">
+	        {{ form.clay }}
+	    </div>
+	</div>
         <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Analyze Soil Properties</button>
+            <button type="submit" class="btn btn-primary">Interprete Soil Analysis</button>
         </div>
     </form>
 </div>
