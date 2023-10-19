@@ -85,6 +85,7 @@ def user_dashboard(request):
 
 
 
+"""
 @login_required(login_url='login')
 def soil_properties_analysis(request):
     if request.method == 'POST':
@@ -98,16 +99,16 @@ def soil_properties_analysis(request):
 - pH: {form.cleaned_data['ph']}\n\
 - % Organic Carbon: {form.cleaned_data['organic_carbon']}\n\
 - % Total Nitrogen: {form.cleaned_data['total_nitrogen']}\n\
-- Available Phosphorus (mg/kg): {form.cleaned_data['available_phosphorus_mg/kg']}\n\
-- Exch Acidity (/kg): {form.cleaned_data['exch_acidity_/kg']}\n\
-- Ca (cmol/kg): {form.cleaned_data['ca_cmol/kg']}\n\
-- Mg (cmol/kg): {form.cleaned_data['mg_cmol/kg']}\n\
-- K (cmol/kg): {form.cleaned_data['k_cmol/kg']}\n\
-- Na (cmol/kg): {form.cleaned_data['na_cmol/kg']}\n\
-- Mn (cmol/kg): {form.cleaned_data['mn_cmol/kg']}\n\
-- Fe (mg/kg): {form.cleaned_data['fe_mg/kg']}\n\
-- Cu (mg/kg): {form.cleaned_data['cu_mg/kg']}\n\
-- Zn (mg/kg): {form.cleaned_data['zn_mg/kg']}\n\
+- Available Phosphorus (mg/kg): {form.cleaned_data['available_phosphorus_mg_kg']}\n\
+- Exch Acidity (/kg): {form.cleaned_data['exch_acidity_kg']}\n\
+- Ca (cmol/kg): {form.cleaned_data['ca_cmol_kg']}\n\
+- Mg (cmol/kg): {form.cleaned_data['mg_cmol_kg']}\n\
+- K (cmol/kg): {form.cleaned_data['k_cmol_kg']}\n\
+- Na (cmol/kg): {form.cleaned_data['na_cmol_kg']}\n\
+- Mn (cmol/kg): {form.cleaned_data['mn_mg_kg']}\n\
+- Fe (mg/kg): {form.cleaned_data['fe_mg_kg']}\n\
+- Cu (mg/kg): {form.cleaned_data['cu_mg_kg']}\n\
+- Zn (mg/kg): {form.cleaned_data['zn_mg_kg']}\n\
 - % Sand: {form.cleaned_data['sand']}\n\
 - % Silt: {form.cleaned_data['silt']}\n\
 - % Clay: {form.cleaned_data['clay']}\n\n\
@@ -131,7 +132,80 @@ Based on these properties, analyze the soil quality, identify any potential issu
         form = SoilPropertiesForm()
 
     return render(request, 'soil_properties_input_form.html', {'form': form})
+"""
 
+
+"""
+@login_required(login_url='login')
+def soil_properties_analysis(request):
+    if request.method == 'POST':
+        palm.configure(api_key=os.environ['PALM_API_KEY'])
+        models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
+        model = models[0].name
+        form = SoilPropertiesForm(request.POST)
+        if form.is_valid():
+            # Create a list of user-supplied properties
+            user_properties = [f"{field.label}: {value}" for field, value in form.cleaned_data.items() if value]
+
+            # Construct the prompt using user-supplied properties
+            prompt = "Please analyze the soil with the following properties:\n\n" + "\n".join(user_properties) + "\n\n" + "Based on these properties, analyze the soil quality, identify any potential issues, and provide detailed recommendations for improving the soil conditions. Consider factors like nutrient deficiencies, pH adjustments, and specific agronomic practices that can optimize soil health and crop yield. Your expertise is invaluable in helping our users make informed decisions for their farming and gardening endeavors."
+
+            # Use the text completion model to generate a response
+            completion = palm.generate_text(
+                model=model,
+                prompt=prompt,
+                temperature=0.7,  # Adjust temperature as needed
+                max_output_tokens=800,  # Adjust max length as needed
+            )
+
+            # Get the generated response from the completion
+            generated_response = completion.result
+
+            return render(request, 'analysis_result.html', {'generated_response': generated_response})
+
+    else:
+        form = SoilPropertiesForm()
+
+    return render(request, 'soil_properties_input_form.html', {'form': form})
+"""
+
+# views.py
+@login_required(login_url='login')
+def soil_properties_analysis(request):
+    if request.method == 'POST':
+        palm.configure(api_key=os.environ['PALM_API_KEY'])
+        models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
+        model = models[0].name
+        form = SoilPropertiesForm(request.POST)
+        if form.is_valid():
+            # Create a list of user-supplied properties
+            user_properties = []
+
+            # Iterate through the form.cleaned_data dictionary
+            for field_name, field_value in form.cleaned_data.items():
+                if field_value:
+                    user_properties.append(f"{form.fields[field_name].label}: {field_value}")
+
+            # Construct the prompt using user-supplied properties
+            prompt = "Please analyze the soil with the following properties:\n\n" + "\n".join(user_properties) + "\n\n" + "Based on these properties, analyze the soil quality, identify any potential issues, and provide detailed recommendations for improving the soil conditions. Consider factors like nutrient deficiencies, pH adjustments, and specific agronomic practices that can optimize soil health and crop yield. Your expertise is invaluable in helping our users make informed decisions for their farming and gardening endeavors."
+
+            # Use the text completion model to generate a response
+            completion = palm.generate_text(
+                model=model,
+                prompt=prompt,
+                temperature=0.7,  # Adjust temperature as needed
+                max_output_tokens=800,  # Adjust max length as needed
+            )
+
+            # Get the generated response from the completion
+            generated_response = completion.result
+
+            return render(request, 'analysis_result.html', {'generated_response': generated_response})
+
+    else:
+        form = SoilPropertiesForm()
+
+    return render(request, 'soil_properties_input_form.html', {'form': form})
 
 
 

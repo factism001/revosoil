@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_filters %}
+
+{% load crispy_forms_tags %}
+
 {% block content %}
     <div class="container mt-5">
         <h1>Chat Page</h1>
@@ -16,12 +20,9 @@
                 </li>
             {% endfor %}
         </ul>
-        <form method="post">
+        <form id="user_prompt" method="post">
             {% csrf_token %}
-            <div class="input-group mb-3" id="user_prompt">
-                {{ form.prompt.label_tag }}
-                {{ form.prompt }}
-            </div>
+            {{ form | crispy }}
             <button type="submit" class="btn btn-primary">Send</button>
         </form>
     </div>
