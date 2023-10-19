@@ -98,16 +98,16 @@ def soil_properties_analysis(request):
 - pH: {form.cleaned_data['ph']}\n\
 - % Organic Carbon: {form.cleaned_data['organic_carbon']}\n\
 - % Total Nitrogen: {form.cleaned_data['total_nitrogen']}\n\
-- Available Phosphorus (mg/kg): {form.cleaned_data['available_phosphorus_(mg/kg)']}\n\
-- Exch Acidity (/kg): {form.cleaned_data['exch_acidity_(/kg)']}\n\
-- Ca (cmol/kg): {form.cleaned_data['ca_(cmol/kg)']}\n\
-- Mg (cmol/kg): {form.cleaned_data['mg_(cmol/kg)']}\n\
-- K (cmol/kg): {form.cleaned_data['k_(cmol/kg)']}\n\
-- Na (cmol/kg): {form.cleaned_data['na_(cmol/kg)']}\n\
-- Mn (cmol/kg): {form.cleaned_data['mn_(cmol/kg)']}\n\
-- Fe (mg/kg): {form.cleaned_data['fe_(mg/kg)']}\n\
-- Cu (mg/kg): {form.cleaned_data['cu_(mg/kg)']}\n\
-- Zn (mg/kg): {form.cleaned_data['zn_(mg/kg)']}\n\
+- Available Phosphorus (mg/kg): {form.cleaned_data['available_phosphorus_mg/kg']}\n\
+- Exch Acidity (/kg): {form.cleaned_data['exch_acidity_/kg']}\n\
+- Ca (cmol/kg): {form.cleaned_data['ca_cmol/kg']}\n\
+- Mg (cmol/kg): {form.cleaned_data['mg_cmol/kg']}\n\
+- K (cmol/kg): {form.cleaned_data['k_cmol/kg']}\n\
+- Na (cmol/kg): {form.cleaned_data['na_cmol/kg']}\n\
+- Mn (cmol/kg): {form.cleaned_data['mn_cmol/kg']}\n\
+- Fe (mg/kg): {form.cleaned_data['fe_mg/kg']}\n\
+- Cu (mg/kg): {form.cleaned_data['cu_mg/kg']}\n\
+- Zn (mg/kg): {form.cleaned_data['zn_mg/kg']}\n\
 - % Sand: {form.cleaned_data['sand']}\n\
 - % Silt: {form.cleaned_data['silt']}\n\
 - % Clay: {form.cleaned_data['clay']}\n\n\
