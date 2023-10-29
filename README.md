@@ -13,7 +13,7 @@ To run the Revosoil app locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/revosoil-app.git
+   git clone https://github.com/factism001/revosoil.git
    cd revosoil-app
    ```
 
